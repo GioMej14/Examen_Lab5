@@ -191,7 +191,40 @@ public class Mejia_Trigo_Exam1 {
 
                     System.out.println("Gracias por jugar. ¡Hasta la próxima!");
                     break;
-                
+                case 4:
+                    int numeroSecreto = random.nextInt(100) +1;
+                    int intentos = 0;
+                    int numeroIngresado = 0;
+                    boolean acertado = false;
+                    
+                    System.out.println("¡Bienvenido al juego del número secreto!");
+                    System.out.println("Cuentas con 10 intentos para adivinar un número entre 1 y 100");
+                    
+                    while (intentos < 10 && !acertado) {
+                        System.out.println("Intento " + (intentos + 1) + ": Ingrese un número: ");
+                        numeroIngresado  = input.nextInt();
+                        intentos++;
+                        
+                        if (numeroIngresado == numeroSecreto) {
+                            acertado = true; 
+                            System.out.println("¡Correcto! Adivinaste el número en " + intentos + " intento(s)");
+                        } else if (numeroIngresado < numeroSecreto){
+                            System.out.println("El número secreto es mayor.");
+                        } else {
+                            System.out.println("El número secreto es menor.");
+                        }
+                    }
+                    
+                    if (!acertado) {
+                        System.out.println("¡Se acabarón los intentos, el número secreto era " + numeroSecreto);
+                    }
+                    
+                    break;
+                case 5:
+                    System.out.println("Saliendo del programa...");
+                    break;
+                default:
+                    System.out.println("Opción invalida, intetelo de nuevo.");    
             }
         } while (opcion != 5);
 

@@ -8,7 +8,8 @@ package examenlabprogramacion;
  *
  * @author trigo
  */
-import java.util.*;
+import java.util.Scanner;
+import java.util.Random;
 
 public class Mejia_Trigo_Exam1 {
 
@@ -57,52 +58,143 @@ public class Mejia_Trigo_Exam1 {
                         System.out.println(" = " + suma);
                     }
                     break;
-                case 2: 
+                case 2:
                     System.out.print("Ingrese el mensaje a cifrar o descifrar: ");
                     String mensaje = input.next();
-                    
+
                     String resultado = "";
-                    
+
                     for (int contador = 0; contador < mensaje.length(); contador++) {
                         char letra = mensaje.charAt(contador);
                         char nueva = letra;
-                        
-                        if (letra >= 'a' && letra <= 'z'){
+
+                        if (letra >= 'a' && letra <= 'z') {
                             char original = 'a';
                             char opuesta = 'z';
-                            while (original <= 'z'){
-                                if (letra == original){
+                            while (original <= 'z') {
+                                if (letra == original) {
                                     nueva = opuesta;
                                     break;
                                 }
                                 original++;
                                 opuesta--;
-                            }    
-                        }
-                        
-                        else if (letra >= 'A' && letra <= 'Z'){
+                            }
+                        } else if (letra >= 'A' && letra <= 'Z') {
                             char original = 'A';
                             char opuesta = 'Z';
-                            while (original <= 'Z'){
-                                if (letra == original){
+                            while (original <= 'Z') {
+                                if (letra == original) {
                                     nueva = opuesta;
                                     break;
                                 }
                                 original++;
                                 opuesta--;
-                            }    
+                            }
                         }
-                        
+
                         resultado += nueva;
                     }
-                    
+
                     System.out.println("Resultado: " + resultado);
                     break;
                 case 3:
-                    
-  
+                    String jugarDeNuevo;
+
+                    System.out.println("¡Bienvenido al juego piedra, papel o tijera!");
+
+                    do {
+                        String eleccionDelUsuario = "";
+                        boolean entradaValida = false;
+
+                        while (!entradaValida) {
+                            System.out.print("Elije piedra, papel o tijera: ");
+                            eleccionDelUsuario = input.next();
+
+                            if ((eleccionDelUsuario.length() == 6
+                                    && eleccionDelUsuario.charAt(0) == 'p'
+                                    && eleccionDelUsuario.charAt(1) == 'i'
+                                    && eleccionDelUsuario.charAt(2) == 'e'
+                                    && eleccionDelUsuario.charAt(3) == 'd'
+                                    && eleccionDelUsuario.charAt(4) == 'r'
+                                    && eleccionDelUsuario.charAt(5) == 'a') || 
+                                    
+                                    (eleccionDelUsuario.length() == 5
+                                    && eleccionDelUsuario.charAt(0) == 'p'
+                                    && eleccionDelUsuario.charAt(1) == 'a'
+                                    && eleccionDelUsuario.charAt(2) == 'p'
+                                    && eleccionDelUsuario.charAt(3) == 'e'
+                                    && eleccionDelUsuario.charAt(4) == 'l') || 
+                                    
+                                    (eleccionDelUsuario.length() == 6
+                                    && eleccionDelUsuario.charAt(0) == 't'
+                                    && eleccionDelUsuario.charAt(1) == 'i'
+                                    && eleccionDelUsuario.charAt(2) == 'j'
+                                    && eleccionDelUsuario.charAt(3) == 'e'
+                                    && eleccionDelUsuario.charAt(4) == 'r'
+                                    && eleccionDelUsuario.charAt(5) == 'a')) {
+
+                                entradaValida = true;
+
+                            } else {
+                                System.out.println("Entrada inválida. Inténtalo de nuevo.");
+                            }
+                        }
+
+
+                        int eleccionComputadoraNum = random.nextInt(3);
+                        String eleccionComputadora = "";
+                        if (eleccionComputadoraNum == 0) {
+                            eleccionComputadora = "piedra";
+                        } else if (eleccionComputadoraNum == 1) {
+                            eleccionComputadora = "papel";
+                        } else {
+                            eleccionComputadora = "tijera";
+                        }
+
+                        System.out.println("La computadora eligió: " + eleccionComputadora);
+
+   
+                        boolean empate = false;
+                        if (eleccionDelUsuario.length() == eleccionComputadora.length()) {
+                            boolean iguales = true;
+                            for (int i = 0; i < eleccionDelUsuario.length(); i++) {
+                                if (eleccionDelUsuario.charAt(i) != eleccionComputadora.charAt(i)) {
+                                    iguales = false;
+                                    break;
+                                }
+                            }
+                            if (iguales) {
+                                empate = true;
+                            }
+                        }
+
+
+                        if (empate) {
+                            System.out.println("¡Es un empate!");
+                        } else if ((eleccionDelUsuario.length() == 6 && eleccionDelUsuario.charAt(0) == 'p' && eleccionComputadora == "tijera")
+                                || 
+                                (eleccionDelUsuario.length() == 5 && eleccionDelUsuario.charAt(0) == 'p' && eleccionComputadora == "piedra")
+                                ||
+                                (eleccionDelUsuario.length() == 6 && eleccionDelUsuario.charAt(0) == 't' && eleccionComputadora == "papel") 
+                                ) {
+                            System.out.println("¡Ganaste esta ronda!");
+                        } else {
+                            System.out.println("La computadora gana esta ronda.");
+                        }
+
+                        System.out.print("¿Desea jugar otra ronda? (si/no): ");
+                        jugarDeNuevo = input.next();
+
+                    } while (jugarDeNuevo.length() == 2
+                            && jugarDeNuevo.charAt(0) == 's'
+                            && jugarDeNuevo.charAt(1) == 'i');
+
+                    System.out.println("Gracias por jugar. ¡Hasta la próxima!");
+                    break;
+                
             }
-        }while (opcion != 5);
+        } while (opcion != 5);
+
     }
 
 }
